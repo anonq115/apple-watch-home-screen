@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Time Display</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.38/moment-timezone-with-data.min.js"></script>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        height: 100vh;
+        background-color:darkblue;
+    }
+
+    .time-box {
+        position: relative;
+        background-color: #08090612;
+        color: white;
+        width: 100px;
+        height: 89px;
+        text-align: center;
+        padding-top: 20px;
+        margin-bottom: 20px;
+        box-shadow: 
+            0 0 0 2.5px #040405, /* Inner black border */
+            0 0 0 5px #020202; /* Outer red border */
+        border-radius: 20px;  
+        font-family: "San Francisco", Arial, sans-serif; /* Apple font family */
+        background-image: url('https://i.gyazo.com/5ce762aeab11aa6cff070cd2d31dd527.png'), linear-gradient(rgba(8, 9, 6, 0.7), rgba(8, 9, 6, 0.7)); /* Combine image and background color with opacity */
+        background-blend-mode: overlay; /* Blend image and color */
+        background-repeat: no-repeat;
+        background-size: cover;
+    }    
+  
+    .time {
+        font-size: 19.8px;
+        position: absolute;
+        bottom: 0; 
+          left: 50px;
+        right: 0;
+        text-transform: uppercase;
+        font-weight:600;      top: 29.9px;
+       
+    }
+
+    .date {
+        font-size: 11px;
+        position: absolute;
+      top: 17.9px;
+      left: 59px;
+        right: 0;
+        text-transform: uppercase;    font-weight:600;   
+    }
+</style>
+</head>
+<body>
+    <div class="time-box">
+        <div class="date" id="date"></div>
+        <div class="time" id="time">
+            <!-- JavaScript will update the time here -->
+        </div>
+    </div>
+    <script>
+        // Get the current time in Los Angeles (Pacific Time) in regular hour format (12-hour format with AM/PM)
+        function updateTime() {
+            const now = moment().tz("America/Los_Angeles");
+            let hours = now.hours();
+            if (hours === 0) {
+                hours = 12; // Convert 0 to 12 for 12-hour clock format
+            }
+            const minutes = now.minutes().toString().padStart(2, '0');
+            const timeString = `${hours}:${minutes}`;
+            document.querySelector('#time').textContent = timeString;
+            document.querySelector('#date').textContent = now.format('ddd D');
+        }
+
+        // Update the time every second
+        setInterval(updateTime, 1000);
+
+        // Initial call to set the time immediately
+        updateTime();
+    </script>
+</body>
+</html>

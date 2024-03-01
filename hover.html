@@ -31,14 +31,36 @@
             0 0 0 5px #020202; /* Outer red border */
         border-radius: 20px;  
         font-family: "San Francisco", Arial, sans-serif; /* Apple font family */
-        background-image: url('https://i.imgur.com/WZVfTm2.png'), linear-gradient(rgba(8, 9, 6, 0.27), rgba(8, 9, 6, 0.27)); /* Combine image and background color with opacity */
+        background-image: url('https://i.imgur.com/WZVfTm2.png'), linear-gradient(rgba(8, 9, 6, 0.7), rgba(8, 9, 6, 0.97)); /* Combine image and background color with opacity */
         background-blend-mode: overlay; /* Blend image and color */
         background-repeat: no-repeat;
         background-size: cover;
         opacity: 0;
         transition: opacity 0.3s ease; /* Smooth transition */
     }    
-  
+  .time-box::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to left, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
+    z-index: 1; /* Ensure the overlay is behind the content */
+    border-radius:12px;
+}
+
+.time-box::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
+    z-index: 1; /* Ensure the overlay is behind the content */ border-radius:12px;
+}
+
     .time-box:hover {
         opacity: 1;
     }
@@ -50,7 +72,8 @@
         left: 38px;
         right: 0;
         text-transform: uppercase;
-        font-weight: 600;    top: 29.9px;
+        font-weight: 600;    top: 29.9px;   z-index: 2;
+         opacity:0.95;
     }
 
     .date {
@@ -60,7 +83,7 @@
         left: 59px;
         right: 0;
         text-transform: uppercase;
-        font-weight: 600;
+        font-weight: 600;   z-index: 2;     opacity:0.95;
     }
 </style>
 </head>
